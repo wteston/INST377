@@ -208,6 +208,94 @@ var organizations = [
 console.log("test");
 
 // Your JavaScript code goes here
+var org_count = 0;
+var year;
+var age;
+var tableContent = '<tr>';
+var body = document.getElementsByTagName("body")[0];
+var table = document.createElement("table");
+var tableBody = document.createElement("tbody");
+
+for (var i = 0; i < 5; i++) {
+    var row = document.createElement("tr");
+		for (var j = 0; j < 2; j++) {
+            var cell = document.createElement("td");
+            var cellText = document.createTextNode("cell " + i + "," + j);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+        }
+    tableBody.appendChild(row);
+}
+
+table.appendChild(tableBody);
+body.appendChild(table);
+table.setAttribute("border","2");
+
+table.rows[0].cells[0].innerHTML = "How many non-profit organizations are listed?";
+table.rows[1].cells[0].innerHTML = "How many organizations are less than 10 years old?"
+table.rows[2].cells[0].innerHTML = "How many of these organizations are North American?";
+table.rows[3].cells[0].innerHTML = "How many organizations used the transportation type of data?";
+table.rows[4].cells[0].innerHTML = "How many organizations have a size of 1 to 10?";
+
+
+for (var i = 0; i < organizations.length; i++) {
+    if (organizations[i]["Organization Type"] == "Nonprofit") {
+        org_count += 1;
+    }
+}
+
+table.rows[0].cells[1].innerHTML = "There are " + org_count + " non-profit organizations.";
+org_count = 0;
+
+for (var i = 0; i < organizations.length; i++) {
+    year = organizations[i]["Founding Year"];
+    age = 2018 - year;
+    if (age < 10) {
+        org_count += 1;
+    }
+    year = 0;
+}
+
+table.rows[1].cells[1].innerHTML = "There are " + org_count + " organizations less than 10 years old.";
+org_count = 0;
+
+for (var i = 0; i < organizations.length; i++) {
+    if (organizations[i]["Region"] == "North America") {
+        org_count += 1;
+    }
+}
+
+table.rows[2].cells[1].innerHTML = "There are " + org_count + " organizations from North America.";
+org_count = 0;
+
+for (var i = 0; i < organizations.length; i++) {
+    if (organizations[i]["Type of Data Used"].includes("Transportation")) {
+        org_count += 1;
+    }
+}
+
+table.rows[3].cells[1].innerHTML = "There are "+ org_count + " organizations that used the Transportation data.";
+org_count = 0;
+
+for (var i = 0; i < organizations.length; i++) {
+    if (organizations[i]["Size"] == "1 to 10") {
+        org_count += 1;
+    }
+}
+
+table.rows[4].cells[1].innerHTML = "There are " + org_count + " organizations with a size of 1 to 10.";
+org_count = 0;
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
